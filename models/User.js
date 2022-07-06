@@ -24,10 +24,12 @@ const UserSchema = new Schema(
         },
 
         // thoughts and friends might be wrong and need to be fixed
-        thoughts: {
-            type: Schema.Types.ObjectId,
-            ref: 'Thoughts'
-        },
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thoughts'
+            }
+        ],
 
         friends: {
             type: Schema.Types.ObjectId,
