@@ -1,5 +1,5 @@
 const { Schema, model, Types } = require('mongoose');
-const dateFormat = require('../../pizza-hunt/utils/dateFormat');
+const dateFormat = require('../utils/dateFormat');
 
 // reaction schema
 const ReactionSchema = new Schema(
@@ -67,6 +67,6 @@ ThoughtsSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 })
 
-const Thoughts = model('Thoughts', ThoughtsSchema);
+const Thought = model('Thought', ThoughtsSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
