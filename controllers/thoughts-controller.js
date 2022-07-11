@@ -82,7 +82,7 @@ const thoughtsController = {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reaction: body } },
-            { new: true }
+            { new: true, runValidators: true }
         )
         .then((dbUserData) => {
             if (!dbUserData) {
