@@ -14,18 +14,19 @@ const {
 router
     .route('/')
     .get(findAllThoughts)
-    .post(createThought)
+
+router.route('/:userId').post(createThought)
 
 // /api/thoughts/:id
 router
-    .route('/:id')
+    .route('/:userId/:thoughtId')
     .get(findThoughtById)
     .put(updateThought)
     .delete(removeThought);
 
 // reactions
 router
-    .route('/:thoughtId/reactions')
+    .route('/:thoughtId/:reactions')
     .post(createReaction)
     .delete(removeReaction);
 
