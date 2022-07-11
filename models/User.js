@@ -24,7 +24,7 @@ const UserSchema = new Schema(
         },
 
         // thoughts and friends might be wrong and need to be fixed
-        thoughts: [
+        thought: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Thought'
