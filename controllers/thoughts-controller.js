@@ -53,7 +53,7 @@ const thoughtsController = {
 
     // find a thought
     findThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
+        Thought.findOne({ _thoughtId: params.id })
             .then((dbThoughtData) => {
                 if (!dbThoughtData) {
                     res.status(404).json({ message: 'No thought found' });
@@ -98,7 +98,7 @@ const thoughtsController = {
     removeReaction({ params }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $pull: { reaction: { reactionId: params.reactionId} } },
+            { $pull: { reaction: { reactionId: params.reactionId } } },
             { new: true }
         )
         .then((dbThoughtData) => res.json(dbThoughtData))
