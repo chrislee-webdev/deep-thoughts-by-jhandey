@@ -28,5 +28,5 @@ router
     .route('/:id/:friends/:friendsId')
     .post(addFriend)
     .delete(deleteFriend);
-    
+
 module.exports = router;
