@@ -40,15 +40,15 @@ const thoughtsController = {
         Thought.find({})
             .populate({
                 path: 'reactions',
-                select: '-__v'
-            })
-            .populate({
-                path: 'thought',
-                select: '-__v'
+                select: '-__v',
             })
             .select('-__v')
-            .then((dbThoughtData) => res.json(dbThoughtData))
-            .catch(err => res.json(err));
+            .sort({ _id: -1 })            
+            .then(dbUserData => res.json(dbUserData))
+            .catch(err => {
+                console.log(err);
+                res.sendStatus(400);
+            });
     },
 
     // find a thought

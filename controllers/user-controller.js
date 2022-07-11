@@ -21,10 +21,10 @@ const userController = {
     getUserById({ params }, res) {
         console.log(`params; ${JSON.stringify(params)}`)
         User.findOne({ _id: params.id })
-            // .populate({
-            //     path: 'thought',
-            //     select: '-__v'
-            // })
+            .populate({
+                path: 'thought',
+                select: '-__v'
+            })
             // .select('-__v')
             .then(dbUserData => res.json(dbUserData))
             .catch(err => {
