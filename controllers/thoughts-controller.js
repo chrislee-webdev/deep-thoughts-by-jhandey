@@ -39,7 +39,7 @@ const thoughtsController = {
     findAllThoughts(req, res) {
         Thought.find({})
             .populate({
-                path: 'reactions',
+                path: 'reaction',
                 select: '-__v',
             })
             .select('-__v')
@@ -77,29 +77,9 @@ const thoughtsController = {
             .catch(err => res.json(err));
     },
 
-    createThought({ params, body }, res) {
-            console.log(params);
-            Thought.create(body)
-                .then(({ _id }) => {
-                    return User.findOneAndUpdate(
-                        { _id: params.userId},
-                        { $push: { thought: _id } },
-                        { new: true }
-                    );
-                })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json( { message: 'No user found with this id' });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => res.json(err));
-    },
-    
     // create a reaction
     createReaction({ params, body }, res) {
-        console.log(params);
+        console.log('here are params', params);
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
             { $push: { reaction: body } },
